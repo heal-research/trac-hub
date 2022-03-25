@@ -37,13 +37,14 @@ class GracefulQuit
 end
 
 class Migrator
-  def initialize(trac, github, users, labels, revmap, attachurl, singlepost, safetychecks)
+  def initialize(trac, github, users, labels, revmap, milestones, attachurl, singlepost, safetychecks)
     @trac = trac
     @repo = github['repo']
     @token = github["token"]
 
     @users = Hash[users]
     @labels = Hash[labels.map { |cat, rx| [cat, Hash[rx] ] }]
+    @milestones = Hash[milestones]
     @ticket_to_issue = {}
     @trac_mails_cache = Hash.new
 
@@ -79,20 +80,20 @@ class Migrator
   private
 
   # returns the author mail if found, otherwise author itself
-  def trac_mail(author)
-    return @trac_mails_cache[author] if @trac_mails_cache.has_key?(author)
-    # tries to retrieve the email from trac db
-    data = @trac.sessions.select(:value).where('name = "email" AND sid = ?', author)
-    return (@trac_mails_cache[author] = data.first[:value]) if data.count == 1
-    return (@trac_mails_cache[author] = author) # not found
-  end
+#  def trac_mail(author)
+#    return @trac_mails_cache[author] if @trac_mails_cache.has_key?(author)
+#    # tries to retrieve the email from trac db
+#    data = @trac.sessions.select(:value).where('name = "email" AND sid = ?', author)
+#    return (@trac_mails_cache[author] = data.first[:value]) if data.count == 1
+#    return (@trac_mails_cache[author] = author) # not found
+#  end
 
   # returns the git commit hash for a specified revision (using revmap hash)
   def map_changeset(str)
     if @revmap and @revmap.has_key?(str)
       return "[r#{str}](../commit/#{@revmap[str]})"
     else
-      return str
+      return "r#{str} (not migrated)"
     end
   end
 
@@ -135,13 +136,14 @@ class Migrator
 
       if @safetychecks
         while response["status"] == "pending"
-          sleep 0.1
+          sleep 1
           $logger.info("Checking import status: #{response['id']}")
           response = JSON.parse(RestClient.get(response['url'], {
             "Authorization" => "token #{@token}",
             "Accept" => "application/vnd.github.golden-comet-preview+json"}))
         end
         $logger.info("Status: #{response['status']}")
+        $logger.debug(response)
         issue_id = response["issue_url"].match(/\d+$/).to_s.to_i
 
         $logger.info("created issue ##{issue_id} for ticket #{ticket[:id]}")
@@ -166,7 +168,7 @@ class Migrator
     closed = nil
 
     # summary line:
-    body += [:component, :priority, :resolution, :keywords].map{
+    body += [:milestone, :component, :priority, :resolution, :keywords].map{
         |cat| ticket[cat] and not ticket[cat].lstrip.empty? and
               "**#{cat.to_s}:** #{ticket[cat]}"
     }.select{|x| x}.join(" | ")
@@ -218,14 +220,20 @@ class Migrator
       "title" => ticket[:summary],
       "body" => body,
       "labels" => labels.to_a,
+      "milestone" => @milestones[ticket[:milestone]],
       "closed" => ticket[:status] == "closed",
       "created_at" => format_time(ticket[:time]),
     }
-    if @users.has_key?(ticket[:owner])
-      owner = trac_mail(ticket[:owner])
+    
+    if ticket[:status] != "closed" && @users.has_key?(ticket[:owner])
+#      owner = trac_mail(ticket[:owner])  # do not show e-mail addresses
+      owner = ticket[:owner]
       github_owner = @users[owner]
       $logger.debug("..owner in trac: #{owner}")
       $logger.debug("..assignee in GitHub: #{github_owner}")
+      if github_owner == 'ddorfmeister' 
+        github_owner = 's-wagner'
+      end
       issue["assignee"] = github_owner
     end
 
@@ -235,6 +243,8 @@ class Migrator
     if issue["closed"] and closed
       issue["closed_at"] = format_time(closed)
     end
+
+    $logger.debug(issue)
 
     return {
       "issue" => issue,
@@ -258,7 +268,7 @@ class Migrator
 
     # author
     author = meta[:author]
-    author = trac_mail(author)
+#    author = trac_mail(author)
     if @users.has_key?(author)
       author = "@" + @users[author]
     end
@@ -268,15 +278,23 @@ class Migrator
     text += "#### #{time.strftime("%Y-%m-%d %H:%M:%S")}: #{author} "
 
     case kind
-      when 'owner', 'status', 'title', 'resolution', 'priority', 'component', 'type', 'severity', 'platform'
+      when 'owner', 'status', 'title', 'resolution', 'priority', 'component', 'type', 'severity', 'platform', 'milestone'
         old = meta[:oldvalue]
         new = meta[:newvalue]
-        if old and new
+        if kind == 'owner'
+          old = "@" + @users[old] if @users.has_key?(old)
+          new = "@" + @users[new] if @users.has_key?(new)
+	end
+        if old and !old.empty? and new and !new.empty?
           text += "changed #{kind} from *#{old}* to *#{new}*"
-        elsif old
+        elsif old and !old.empty?
           text += "removed #{kind} (was *#{old}*)"
-        elsif new
+        elsif old
+          text += "removed #{kind}"
+        elsif new and !new.empty?
           text += "set #{kind} to *#{new}*"
+        elsif new
+          text += "set #{kind} to empty"
         end
 
       when :initial
@@ -314,8 +332,7 @@ class Migrator
         # (ticket[:description] already contains the new value,
         # so there is no need to update)
         text += "edited the issue description"
-
-      when 'keywords', 'cc', 'reporter', 'version'
+      when 'keywords', 'cc', 'reporter', 'version', 'milestone'
         # don't care
         return nil
     end
@@ -333,6 +350,7 @@ class Migrator
     str.gsub!(/\{\{\{\n(#!CommitTicketReference .+?)\}\}\}/m, '\1')
     str.gsub!(/#!CommitTicketReference .+\n/, '')
     # Code
+    str.gsub!(/#!csharp(.+?)/, 'cs\1')
     str.gsub!(/\{\{\{([^\n]+?)\}\}\}/, '`\1`')
     str.gsub!(/\{\{\{(.+?)\}\}\}/m, '```\1```')
     str.gsub!(/(?<=```)#!/m, '')
@@ -352,10 +370,12 @@ class Migrator
     str.gsub!(/(^\s+)\*/, '\1-')
     str.gsub!(/(^\s+)(\d)\./, '\1\2.')
     # Changeset
-    str.gsub!(/https?:\/\/svnweb.cern.ch\/trac\/madx\/changeset\/(\d+)\/?/, '[changeset:\1]')
+    str.gsub!(/https?:\/\/dev.heuristiclab.com\/trac.fcgi\/changeset\/(\d+)\/?/, '[changeset:\1]')
     str.gsub!(/\[changeset:"r(\d+)".*\]/, '[changeset:\1]')
     str.gsub!(/\[changeset:r(\d+)\]/,     '[changeset:\1]')
-    str.gsub!(/\br(\d+)\b/)              { map_changeset(Regexp.last_match[1]) }
+    if nil == str.gsub!(/\br(\d+):(\d+)\b/) { map_changeset(Regexp.last_match[1]) + ' to ' + map_changeset(Regexp.last_match[2])}
+      str.gsub!(/\br(\d+)\b/)              { map_changeset(Regexp.last_match[1])} # only if the first pattern was not matched
+    end
     str.gsub!(/\[changeset:"(\d+)".*\]/) { map_changeset(Regexp.last_match[1]) }
     str.gsub!(/\[changeset:(\d+)\]/)     { map_changeset(Regexp.last_match[1]) }
     # Ticket
@@ -467,11 +487,12 @@ if __FILE__ == $0
         .map {|rev,sha| [rev.gsub(/^r/, ''), sha]}  # remove leading "r" if present
       ]
     end
+    $logger.debug(revmap["21"])
   end
 
   trac = Trac.new(db)
   migrator = Migrator.new(
-      trac, cfg['github'], cfg['users'], cfg['labels'], revmap,
+      trac, cfg['github'], cfg['users'], cfg['labels'], revmap, cfg['milestones'], 
       opts[:attachurl], opts[:singlepost], (not opts[:fast]))
   migrator.migrate(opts[:start], opts[:openedonly])
 end

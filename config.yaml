@@ -1,0 +1,365 @@
+trac:
+  # database: mysql2://user:password@host:port/database
+
+github:
+#  repo: 'HeuristicLab-Trac-Bot/hl-import'
+  token: ''
+
+# make sure not to typo the GitHub username as the issue will fail to create if a ticket's owner (assignee) has a valid mapping below
+users:
+  abeham: abeham
+  ascheibe: Shabbafru
+  bburlacu: foolnotion  
+  bgoldman: brianwgoldman
+  bwerth: BernhardWerth
+  chaider: chrishaider
+  cneumuel: discostu105
+  ddorfmei: ddorfmeister
+  dpiring: DavidPiringer
+  epitzer: epitzer
+  fbaching: florianBachinger
+  fholzing: Vanmodeus
+  gkronber: gkronber
+  jkarder: jkarder
+  jzenisek: janzenisek
+  kyang: kfyang
+  lkammere: LukasCamera
+  mkommend: mkommend
+  pfleck: NimZwei
+  sforsten: t-h-e
+  spimming: spimminger
+  sraggl: raggy-rs
+  swagner: s-wagner
+  swinkler: StephanWinklerHagenberg
+  vdorfer: viikiid
+  architects: s-wagner
+  heal: s-wagner
+
+milestones:
+  'HeuristicLab 3.3.0': 1
+  'HeuristicLab 3.3.1': 2
+  'HeuristicLab 3.3.2': 3
+  'HeuristicLab 3.3.3': 4
+  'HeuristicLab 3.3.4': 5
+  'HeuristicLab 3.3.5': 6
+  'HeuristicLab 3.3.6': 7
+  'HeuristicLab 3.3.7': 8
+  'HeuristicLab 3.3.8': 9
+  'HeuristicLab 3.3.9': 10
+  'HeuristicLab 3.3.10': 11
+  'HeuristicLab 3.3.11': 12
+  'HeuristicLab 3.3.12': 13
+  'HeuristicLab 3.3.13': 14
+  'HeuristicLab 3.3.14': 15
+  'HeuristicLab 3.3.15': 16
+  'HeuristicLab 3.3.16': 17
+  'HeuristicLab 3.3.17': 18
+  'HeuristicLab 3.3.x Backlog': 19
+  'HeuristicLab 4.0': 20
+  'HeuristicLab 4.x Backlog': 21
+
+labels:
+  type:
+    enhancement:        enhancement
+    feature request:    enhancement
+    defect:             bug
+#    task:               task
+  component:
+# dummy component
+     NoComponent: empty
+# TODO max length of labels is 50 chars
+#    Algorithms:     Algorithms 
+#    Algorithms.ALPS:    Alg.ALPS
+#    Algorithms.Benchmarks:     Alg.Benchmarks 
+#    Algorithms.Benchmarks.Views:     Alg.Benchmarks.Views 
+#    Algorithms.CMAEvolutionStrategy:     Alg.CMAES
+#    Algorithms.DataAnalysis:     Alg.DataAnalysis 
+#    Algorithms.DataAnalysis.Views:     Alg.DataAnalysis.Views 
+#    Algorithms.EvolutionStrategy:     Alg.ES 
+#    Algorithms.GeneticAlgorithm:     Alg.GA 
+#    Algorithms.GradientDescent:     Alg.GradientDescent 
+#    Algorithms.LocalSearch:     Alg.LocalSearch 
+#    Algorithms.MOCMAEvolutionStrategy:     Alg.MOCMAEvolutionStrategy 
+#    Algorithms.NSGA2:     Alg.NSGA2 
+#    Algorithms.OffspringSelectionGeneticAlgorithm:     Alg.OSGA 
+#    Algorithms.ParameterlessPopulationPyramid:     Alg.P3 
+#    Algorithms.ParticleSwarmOptimization:     Alg.PSO 
+#    Algorithms.RAPGA:     Alg.RAPGA 
+#    Algorithms.ScatterSearch:     Alg.ScatterSearch 
+#    Algorithms.SimulatedAnnealing:     Alg.SimulatedAnnealing 
+#    Algorithms.TabuSearch:     Algorithms.TabuSearch 
+#    Algorithms.VariableNeighborhoodSearch:     Alg.VNS 
+#    Analysis:     Analysis 
+#    Analysis.FitnessLandscape:     Analysis.FitnessLandscape 
+#    Analysis.Statistics.Views:     Analysis.Statistics.Views 
+#    Analysis.Views:     Analysis.Views 
+#    BackgroundProcessing:     BackgroundProcessing 
+#    Clients.Common:     Clients.Common 
+#    Clients.OKB:     Clients.OKB 
+#    Clients.OKB.ECJ:     Clients.OKB.ECJ 
+#    Clients.OKB.JavaConnector:     Clients.OKB.JavaConnector 
+#    CodeEditor:     CodeEditor 
+#    Collections:     Collections 
+#    Common:     Common 
+#    Common.Resources:     Common.Resources 
+#    Core:     Core 
+#    Core.Views:     Core.Views 
+#    Data:     Data 
+#    Data.Views:     Data.Views 
+#    DataImporter:     DataImporter 
+#    DataPreprocessing:     DataPreprocessing 
+#    DataPreprocessing.Views:     DataPreprocessing.Views 
+#    DebugEngine:     DebugEngine 
+#    DebugEngine.Views:     DebugEngine.Views 
+#    Encodings:     Encodings 
+#    Encodings.BinaryVectorEncoding:     Encodings.BinaryVector 
+#    Encodings.BinaryVectorEncoding.Tests:     Encodings.BinaryVector.Tests 
+#    Encodings.IntegerVectorEncoding:     Encodings.IntegerVector 
+#    Encodings.IntegerVectorEncoding.Tests:     Encodings.IntegerVector.Tests 
+#    Encodings.LinearLinkageEncoding:     Encodings.LinearLinkage 
+#    Encodings.PermutationEncoding:     Encodings.Permutation 
+#    Encodings.PermutationEncoding.Tests:     Encodings.Permutation.Tests 
+#    Encodings.PermutationEncoding.Views:     Encodings.Permutation.Views 
+#    Encodings.RealVectorEncoding:     Encodings.RealVector 
+#    Encodings.RealVectorEncoding.Tests:     Encodings.RealVector.Tests 
+#    Encodings.ScheduleEncoding:     Encodings.Schedule 
+#    Encodings.ScheduleEncoding.Views:     Encodings.Schedule.Views 
+#    Encodings.SymbolicExpressionTreeEncoding:     Encodings.SymbolicExpressionTree 
+#    Encodings.SymbolicExpressionTreeEncoding.Views:     Encodings.SymbolicExpressionTree.Views 
+#    ExtLibs:     ExtLibs 
+#    General:     General 
+#    Hive.Client:     Hive.Client 
+#    Hive.Client.Common:     Hive.Client.Common 
+#    Hive.Client.Communication:     Hive.Client.Communication 
+#    Hive.Client.Console:     Hive.Client.Console 
+#    Hive.Client.Core:     Hive.Client.Core 
+#    Hive.Client.ExecutionEngine:     Hive.Client.ExecutionEngine 
+#    Hive.Contracts:     Hive.Contracts 
+#    Hive.Engine:     Hive.Engine 
+#    Hive.General:     Hive.General 
+#    Hive.Server:     Hive.Server 
+#    Hive.Server.Console:     Hive.Server.Console 
+#    Hive.Server.Core:     Hive.Server.Core 
+#    Hive.Server.DataAccess:     Hive.Server.DataAccess 
+#    Hive.Server.Scheduler:     Hive.Server.Scheduler 
+#    Hive.Slave:     Hive.Slave 
+#    MainForm:     MainForm 
+#    MainForm.WindowsForms:     MainForm.WindowsForms 
+#    'Multiple Components': 'Multiple components'
+#    Networks:   Networks 
+#    Networks.Views:     Networks.Views 
+#    Operators:     Operators 
+#    Operators.Programmable:     Operators.Programmable 
+#    Operators.Programmable.Views:     Operators.Programmable.Views 
+#    Operators.Views:     Operators.Views 
+#    Operators.Views.OperatorGraphVisualization:     Operators.Views.OperatorGraphVisualization 
+#    Optimization:     Optimization 
+#    Optimization.Operators:     Optimization.Operators 
+#    Optimization.Views:     Optimization.Views 
+#    Optimizer:     Optimizer 
+#    ParallelEngine:     ParallelEngine 
+#    Parameters:     Parameters 
+#    Parameters.Views:     Parameters.Views 
+#    Persistence:     Persistence 
+#    Persistence.GUI:     Persistence.GUI 
+#    Persistence.UnitTest:     Persistence.UnitTest 
+#    PluginInfrastructure:     PluginInfrastructure 
+#    Problems:     Problems 
+#    Problems.BinPacking:     Problems.BinPacking 
+#    Problems.Binary:     Problems.Binary 
+#    Problems.DataAnalysis:     Problems.DataAnalysis 
+#    Problems.DataAnalysis.Symbolic:     Prob.DataAnalysis.Symbolic 
+#    Problems.DataAnalysis.Symbolic.Classification:     Prob.DataAnalysis.Symbolic.Classification 
+#    Problems.DataAnalysis.Symbolic.Classification.Views:     Prob.DataAnalysis.Symbolic.Classification.Views 
+#    Problems.DataAnalysis.Symbolic.Regression:     Prob.DataAnalysis.SymReg 
+#    Problems.DataAnalysis.Symbolic.Regression.Views:     Prob.DataAnalysis.SymReg.Views 
+#    Problems.DataAnalysis.Symbolic.Views:     Prob.DataAnalysis.Symbolic.Views 
+#    Problems.DataAnalysis.Views:     Prob.DataAnalysis.Views 
+#    Problems.ExternalEvaluation:     Problems.ExternalEvaluation 
+#    Problems.ExternalEvaluation.GP:     Problems.ExternalEvaluation.GP 
+#    Problems.ExternalEvaluation.GP.Views:     Problems.ExternalEvaluation.GP.Views 
+#    Problems.ExternalEvaluation.Views:     Problems.ExternalEvaluation.Views 
+#    Problems.GeneticProgramming:     Problems.GeneticProgramming 
+#    Problems.GeneticProgramming.Views:     Problems.GeneticProgramming.Views 
+#    Problems.GrammaticalEvolution:     Problems.GrammaticalEvolution 
+#    Problems.Instances:     Problems.Instances 
+#    Problems.Knapsack:     Problems.Knapsack 
+#    Problems.Knapsack.Views:     Problems.Knapsack.Views 
+#    Problems.LinearAssignment:     Problems.LinearAssignment 
+#    Problems.LinearAssignment.Views:     Problems.LinearAssignment.Views 
+#    Problems.MetaOptimization:     Problems.MetaOptimization 
+#    Problems.NK:     Problems.NK 
+#    Problems.Orienteering:     Problems.Orienteering 
+#    Problems.ParameterOptimization:     Problems.ParameterOptimization 
+#    Problems.ProbabilisticTravelingSalesman:     Problems.ProbabilisticTravelingSalesman 
+#    Problems.ProbabilisticTravelingSalesman.Views:     Problems.ProbabilisticTravelingSalesman.Views 
+#    Problems.Programmable:     Problems.Programmable 
+#    Problems.Programmable.Views:     Problems.Programmable.Views 
+#    Problems.QuadraticAssignment:     Problems.QuadraticAssignment 
+#    Problems.QuadraticAssignment.Views:     Problems.QuadraticAssignment.Views 
+#    Problems.Scheduling:     Problems.Scheduling 
+#    Problems.Scheduling.Views:     Problems.Scheduling.Views 
+#    Problems.TestFunctions:     Problems.TestFunctions 
+#    Problems.TestFunctions.Views:     Problems.TestFunctions.Views 
+#    Problems.TravelingSalesman:     Problems.TravelingSalesman 
+#    Problems.TravelingSalesman.Views:     Problems.TravelingSalesman.Views 
+#    Problems.VehicleRouting:     Problems.VehicleRouting 
+#    Problems.VehicleRouting.Views:     Problems.VehicleRouting.Views 
+#    Random:     Random 
+#    Scripting:     Scripting 
+#    Scripting.Views:     Scripting.Views 
+#    Selection:     Selection 
+#    SequentialEngine:     SequentialEngine 
+#    Services.Authentication:     Services.Authentication 
+#    Services.Authentication.DataAccess:     Services.Authentication.DataAccess 
+#    Services.Deployment:     Services.Deployment 
+#    Services.Deployment.DataAccess:     Services.Deployment.DataAccess 
+#    Services.OKB:     Services.OKB 
+#    Services.OKB.AttributeSelection:     Services.OKB.AttributeSelection 
+#    Services.OKB.DataAccess:     Services.OKB.DataAccess 
+#    Tests:     Tests 
+#    Tools:     Tools 
+#    Tools.ConfigMerger:     Tools.ConfigMerger 
+#    Tools.Snippets:     Tools.Snippets 
+#    Tools.Wizards:     Tools.Wizards 
+#    Tracing:     Tracing 
+#    Visualization:     Visualization 
+#    Visualization.ChartControlsExtensions:     Visualization.ChartControlsExtensions 
+#    WebApplication:     WebApplication 
+#    WebApplication.OKB.Administrator:     WebApplication.OKB.Administrator 
+#    WebApplication.OKB.Query:     WebApplication.OKB.Query 
+#    'ZZZ OBSOLETE: AdvancedOptimizationFrontend': ZZZ Obsolete
+#    'ZZZ OBSOLETE: Assignment.QAP':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: BitVector':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: CEDMA.Server':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: Charting':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: Charting.Data':  ZZZ Obsolete 
+#    'ZZZ OBSOLETE: Communication.Data':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: Communication.Operators':  ZZZ Obsolete 
+#    'ZZZ OBSOLETE: Constraints':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: DataAccess':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: DataAccess.ADOHelper':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: DataAnalysis':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: DistributedEngine':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: ES': ZZZ Obsolete
+#    'ZZZ OBSOLETE: Evolutionary':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: FixedOperators':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: GP':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: GP.Algorithms':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: GP.Boolean':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: GP.Operators':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: GP.Interfaces':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: GP.SantaFe':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: GP.StructureIdentification':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: GP.StructureIdentification.Classification':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: GP.StructureIdentification.ConditionalEvaluation':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: GP.StructureIdentification.TimeSeries':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: Grid':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: Grid.HiveBridge':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: Hive.JobBase':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: Hive.Server.ADODataAccess':  ZZZ Obsolete 
+#    'ZZZ OBSOLETE: Hive.Server.LINQDataAccess':  ZZZ Obsolete 
+#    'ZZZ OBSOLETE: IntVector':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: LinearRegression': g ZZZ Obsolete
+#    'ZZZ OBSOLETE: Logging':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: Modeling':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: Modeling.Database':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: Modeling.Database.SQLServerCompact':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: Operators.MetaProgramming':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: Operators.Stopwatch': ZZZ Obsolete
+#    'ZZZ OBSOLETE: OptimizationFrontend': ZZZ Obsolete
+#    'ZZZ OBSOLETE: Permutation':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: PluginAdministrator':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: PluginInfrastructure.GUI':  ZZZ Obsolete 
+#    'ZZZ OBSOLETE: Problems.ArtificialAnt':  ZZZ Obsolete 
+#    'ZZZ OBSOLETE: Problems.ArtificialAnt.Views':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: Problems.DataAnalysis.Classification':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: Problems.DataAnalysis.Classification.Views':  ZZZ Obsolete 
+#    'ZZZ OBSOLETE: Problems.DataAnalysis.MultiVariate': ZZZ Obsolete
+#    'ZZZ OBSOLETE: Problems.DataAnalysis.MultiVariate.TimeSeriesPrognosis':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: Problems.DataAnalysis.Regression':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: Problems.LawnMower':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: Problems.OneMax': ZZZ Obsolete
+#    'ZZZ OBSOLETE: Problems.OneMax.Views':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: RealVector':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: Routing.TSP':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: SA':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: SGA':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: SGA.Views':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: SQLServerCompact':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: SQLite: gkronber':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: Scheduling.JSSP':  ZZZ Obsolete 
+#    'ZZZ OBSOLETE: Security':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: Security.ADODataAccess':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: Security.Contracts':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: Security.Core':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: Security.DataAccess':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: Security.Server':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: Selection.OffspringSelection':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: Selection.Uncertainty':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: Services.OKB.Server':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: Setup':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: SimOpt':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: StatisticalAnalysis':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: SupportVectorMachines':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: TestFunctions':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: ThreadParallelEngine':  ZZZ Obsolete
+#    'ZZZ OBSOLETE: Visualization.Test':  ZZZ Obsolete
+  resolution:
+    invalid:            invalid
+#    obsolete:           obsolete
+#    done:               done
+    worksforme:         invalid
+    rejected:           wontfix
+    Duplicate:          duplicate
+  platform:
+    Linux:              Linux
+    Windows:            Windows
+
+  # less useful, but also possible:
+  priority:
+# dummy prio
+     empty-prio: empty
+ #   lowest:             'Prio-lowest'
+ #   low:                'Prio-low'
+ #   medium:             'Prio-medium'
+ #   high:               'Prio-high'
+ #   highest:            'Prio-highest'
+    
+  severity:
+     empty-severity: empty
+ #   blocker:            '#high'
+ #   critical:           '#critical'
+ #   major:              '#major'
+ #   minor:              '#minor'
+ #   trivial:            '#trivial'
+  version:
+     empty-version: empty
+ #   '1.0':              v1.0
+ #   '3.0':              v1.0
+ #   '3.1':              v1.0
+ #  '3.2':              v1.0
+ #  '3.3':              v1.0
+ #   '3.3.0':            v3.3.0
+ #   '3.3.1':            v3.3.1
+ #   '3.3.2':            v3.3.2
+ #   '3.3.3':            v3.3.3
+ #   '3.3.4':            v3.3.4
+ #   '3.3.5':            v3.3.5
+ #   '3.3.6':            v3.3.6
+ #   '3.3.7':            v3.3.7
+ #   '3.3.8':            v3.3.8
+ #   '3.3.9':            v3.3.9
+ #   '3.3.10':           v3.3.10
+ #   '3.3.11':           v3.3.11
+ #   '3.3.12':           v3.3.12
+ #   '3.3.13':           v3.3.13
+ #   '3.3.14':           v3.3.14
+ #   '3.3.15':           v3.3.15
+ #   '3.3.16':           v3.3.16
+ #   '3.4':              v3.4
+ #   '4.0':              v4.0
+ #   'branch':           branch
+# we already have Tools as a component
+ #   'tools':            Tools
+ #   'trunk':            trunk

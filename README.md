@@ -5,6 +5,11 @@ trac-hub
 issues. To this end, it accesses trac's underlying database to create tickets
 and post the change history of each ticket as comments.
 
+This is a fork of trac-hub which contains some specific changes that we 
+required for migrating [HeuristicLab](https://github.com/heal-research/HeuristicLab)
+from our trac instance to github.
+
+
 Synopsis
 --------
 
